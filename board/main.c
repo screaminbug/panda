@@ -158,6 +158,8 @@ void set_safety_mode(uint16_t mode, int16_t param) {
 
 // ***************************** USB port *****************************
 
+int usb_live = 0;
+
 int get_health_pkt(void *dat) {
   COMPILE_TIME_ASSERT(sizeof(struct health_t) <= MAX_RESP_LEN);
   struct health_t * health = (struct health_t*)dat;
@@ -243,6 +245,7 @@ void usb_cb_ep3_out_complete() {
 }
 
 void usb_cb_enumeration_complete() {
+  usb_live = 1;
   puts("USB enumeration complete\n");
   is_enumerated = 1;
 }
@@ -654,6 +657,18 @@ int spi_cb_rx(uint8_t *data, int len, uint8_t *data_out) {
   return resp_len;
 }
 #endif
+
+// allow safety_forward to enable sending can messages
+void safety_cb_enable_all() {
+      // allow sending can messages
+      can_silent = ALL_CAN_LIVE;
+      can_autobaud_enabled[0] = false;
+      can_autobaud_enabled[1] = false;
+      #ifdef PANDA
+        can_autobaud_enabled[2] = false;
+      #endif
+      can_init_all();
+}
 
 // ***************************** main code *****************************
 
