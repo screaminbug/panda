@@ -1,5 +1,5 @@
-#!/usr/bin/env python
-from __future__ import print_function
+#!/usr/bin/env python3
+
 import os
 import sys
 import time
@@ -10,10 +10,10 @@ from hexdump import hexdump
 from itertools import permutations
 
 sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), ".."))
-from panda import Panda
+from panda import Panda  # noqa: E402
 
 def get_test_string():
-  return b"test"+os.urandom(10)
+  return b"test" + os.urandom(10)
 
 def run_test(sleep_duration):
   pandas = Panda.list()
@@ -29,14 +29,14 @@ def run_test(sleep_duration):
   run_test_w_pandas(pandas, sleep_duration)
 
 def run_test_w_pandas(pandas, sleep_duration):
-  h = list(map(lambda x: Panda(x), pandas))
+  h = list([Panda(x) for x in pandas])
   print("H", h)
 
   for hh in h:
     hh.set_safety_mode(Panda.SAFETY_ALLOUTPUT)
 
   # test both directions
-  for ho in permutations(range(len(h)), r=2):
+  for ho in permutations(list(range(len(h))), r=2):
     print("***************** TESTING", ho)
 
     panda0, panda1 = h[ho[0]], h[ho[1]]
@@ -49,13 +49,13 @@ def run_test_w_pandas(pandas, sleep_duration):
     print("health", ho[0], h[ho[0]].health())
 
     # **** test K/L line loopback ****
-    for bus in [2,3]:
+    for bus in [2, 3]:
       # flush the output
       h[ho[1]].kline_drain(bus=bus)
 
       # send the characters
       st = get_test_string()
-      st = b"\xaa"+chr(len(st)+3).encode()+st
+      st = bytes([0xaa, len(st) + 3]) + st
       h[ho[0]].kline_send(st, bus=bus, checksum=False)
 
       # check for receive
