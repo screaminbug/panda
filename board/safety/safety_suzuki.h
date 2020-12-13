@@ -3,9 +3,9 @@ static void suzuki_rx_hook(CAN_FIFOMailBox_TypeDef *to_push) {
 }
 
 static int suzuki_tx_hook(CAN_FIFOMailBox_TypeDef *to_send) {
-  // TODO: process samples for safety. for now just allow everything
+  // TODO: process samples for safety.
   // 1 allows the message through
-  return true;
+  return false; // don't allow anything (last time power steering failed)
 }
 
 static void suzuki_init(int16_t param) {
