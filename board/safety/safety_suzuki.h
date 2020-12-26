@@ -11,7 +11,8 @@ static int suzuki_tx_hook(CAN_FIFOMailBox_TypeDef *to_send) {
 }
 
 static void suzuki_init(int16_t param) {
-  controls_allowed = 0;   // TODO
+  UNUSED(param)
+  controls_allowed = false;   // TODO
 }
 
 const safety_hooks suzuki_hooks = {

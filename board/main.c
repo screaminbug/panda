@@ -658,17 +658,17 @@ int spi_cb_rx(uint8_t *data, int len, uint8_t *data_out) {
 }
 #endif
 
-// allow safety_forward to enable sending can messages
-void safety_cb_enable_all() {
-      // allow sending can messages
-      can_silent = ALL_CAN_LIVE;
-      can_autobaud_enabled[0] = false;
-      can_autobaud_enabled[1] = false;
-      #ifdef PANDA
-        can_autobaud_enabled[2] = false;
-      #endif
-      can_init_all();
-}
+//// allow safety_forward to enable sending can messages
+//void safety_cb_enable_all() {
+//      // allow sending can messages
+//      can_silent = ALL_CAN_LIVE;
+//      can_autobaud_enabled[0] = false;
+//      can_autobaud_enabled[1] = false;
+//      #ifdef PANDA
+//        can_autobaud_enabled[2] = false;
+//      #endif
+//      can_init_all();
+//}
 
 // ***************************** main code *****************************
 
