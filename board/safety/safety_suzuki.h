@@ -1,10 +1,12 @@
 static void suzuki_rx_hook(CAN_FIFOMailBox_TypeDef *to_push) {
+  UNUSED(to_push)
   // TODO
 }
 
 static int suzuki_tx_hook(CAN_FIFOMailBox_TypeDef *to_send) {
   // TODO: process samples for safety.
   // 1 allows the message through
+  UNUSED(to_send)
   return false; // don't allow anything (last time power steering failed)
 }
 
@@ -17,7 +19,6 @@ const safety_hooks suzuki_hooks = {
   .rx = suzuki_rx_hook,
   .tx = suzuki_tx_hook,
   .tx_lin = nooutput_tx_lin_hook,
-  .ignition = default_ign_hook,
-  .fwd = nooutput_fwd_hook,
+  .fwd = default_fwd_hook,
 };
 
