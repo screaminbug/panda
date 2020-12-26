@@ -1,12 +1,12 @@
 static void suzuki_rx_hook(CAN_FIFOMailBox_TypeDef *to_push) {
-  UNUSED(to_push)
+  UNUSED(to_push);
   // TODO
 }
 
 static int suzuki_tx_hook(CAN_FIFOMailBox_TypeDef *to_send) {
   // TODO: process samples for safety.
   // 1 allows the message through
-  UNUSED(to_send)
+  UNUSED(to_send);
   return false; // don't allow anything (last time power steering failed)
 }
 
