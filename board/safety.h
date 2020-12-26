@@ -15,7 +15,6 @@
 #include "safety/safety_nissan.h"
 #include "safety/safety_volkswagen.h"
 #include "safety/safety_elm327.h"
-#include "safety/safety_forward.h"
 
 // from cereal.car.CarParams.SafetyModel
 #define SAFETY_SILENT 0U
@@ -257,7 +256,6 @@ const safety_hook_config safety_hook_registry[] = {
   {SAFETY_TESLA, &tesla_hooks},
   {SAFETY_ALLOUTPUT, &alloutput_hooks},
   {SAFETY_GM_ASCM, &gm_ascm_hooks},
-  {SAFETY_FORWARD, &forward_hooks},
   {SAFETY_SUZUKI, &suzuki_hooks},
 };
 
