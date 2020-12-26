@@ -1,6 +1,7 @@
-static void suzuki_rx_hook(CAN_FIFOMailBox_TypeDef *to_push) {
+static int suzuki_rx_hook(CAN_FIFOMailBox_TypeDef *to_push) {
   UNUSED(to_push);
   // TODO
+  return true;
 }
 
 static int suzuki_tx_hook(CAN_FIFOMailBox_TypeDef *to_send) {
