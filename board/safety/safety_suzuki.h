@@ -11,7 +11,7 @@ static int suzuki_tx_hook(CAN_FIFOMailBox_TypeDef *to_send) {
 }
 
 static void suzuki_init(int16_t param) {
-  UNUSED(param)
+  UNUSED(param);
   controls_allowed = false;   // TODO
 }
 
